@@ -1,4 +1,8 @@
- " Show relative line numbers and current line number
+" Allow to search for files through the whole storage by setting the path to
+" search to **
+set path+=,**
+
+" Show relative line numbers and current line number
 set number
 set relativenumber
 
@@ -73,6 +77,12 @@ set wildmode=longest:full,full
 " Setting the folded color to dark blue
 hi Folded ctermbg=008
 hi Folded ctermfg=grey
+" Setting the search highlight color to dark blue
+hi Search ctermbg=176
+hi Search ctermfg=0
+
+" Setting matching parenthesis/brackets' color to purple
+hi MatchParen ctermbg=92
 
 " Setting the VISUAL color to darkgrey (bg) and 017 (dark blue, fg)
 hi Visual ctermbg=darkgrey ctermfg=017
@@ -93,8 +103,15 @@ autocmd InsertLeave * write
 
 " Map <F8> to go to the right buffer, execute norminette and go back to the left
 " buffer
+<<<<<<< HEAD
 map <F8> <C-w>lggdG:read !norminette <CR><CR>gg<C-w>h
 
 
 " Map <F9> to execute the binary
 map <F9> :!bin/philo<CR>
+=======
+map <F8> <C-w>lggdG:read !norminette *.c<CR><CR>gg<C-w>h
+
+" Map \c to execute ctags -R
+map <leader>c :!ctags -R<CR><CR>
+>>>>>>> f1cff6e (Adding the a new path to .vimrc and a the highlight for matching parenthesis color to purple)
