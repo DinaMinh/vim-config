@@ -1,3 +1,10 @@
+call plug#begin('~/.vim/plugged')
+
+" Markdown Preview plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
+call plug#end()
+
 " Allow to search for files through the whole storage by setting the path to
 " search to **
 set path+=,**,$PWD/**
@@ -131,3 +138,10 @@ endfunction
 
 " Create the :F command that uses this completion
 command! -nargs=1 -complete=customlist,FindFuzzyComplete F find *<args>*
+
+" Insert the class template at the current cursor position
+nnoremap <space>t :-1read $HOME/.vim/templates/go/base.go<CR>/{<CR>jo
+
+" Automatically open a CPP class file with the template
+autocmd BufNewFile *.class.hpp 0r ~/.vim/templates/cpp/class_template.hpp | :%s/Template/\=expand('%:t:r:r')/g | execute 'norm ggwwgUwj^wwgUw' | :Stdheader
+autocmd BufNewFile *.class.cpp 0r ~/.vim/templates/cpp/class_template.cpp | :%s/Template/\=expand('%:t:r:r')/g | :Stdheader
